@@ -1,45 +1,114 @@
-首要：先只跑3w的最小文件，看看是否运行成功，速度快一点。
-
-在data文件夹里面，pkl文件是钓鱼节点出发的二阶图，txt文件是钓鱼节点。
-在代码文件里面，有一部分代码和本论文无关，不过很少，里面有随机游走的代码，可以从pkl文件里面提取3 4 5w子图。
-里面也有特征嵌入的文件。
+# Papers about Phishing Scams Detectation on Ethereum
 
 
 
-代码文件有很多，运行的时候需要有顺序，即论文中的数据处理的顺序（很重要，需要先明白文件先后顺序，因为会生成很多文件，而这些文件是其他文件的输入数据。）
-MHRW是Metropolis-Hastings Random Walk方法的缩写，是一种随机游走算法，MHRW 经常用于网络分析和抽样，特别是用于从大型网络中进行随机游走，以便收集样本或进行数据分析。
+[![PRs Welcome](https://camo.githubusercontent.com/8e3f93062f644cab6233f5c86b2fb68a9d1aac5a91313077d02bb3a60d5c2f42/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5052732d57656c636f6d652d677265656e)](https://camo.githubusercontent.com/8e3f93062f644cab6233f5c86b2fb68a9d1aac5a91313077d02bb3a60d5c2f42/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5052732d57656c636f6d652d677265656e) [![Awesome](https://camo.githubusercontent.com/715ee701c8a9a0dbe30aac69ed79f5712a6542f5a482a3940084ce76d494a779/68747470733a2f2f617765736f6d652e72652f62616467652e737667)](https://awesome.re/) [![Stars](https://camo.githubusercontent.com/00e909d4bf93b5aae6f032e7225e9654e5a8c0fe446b1a7b7f403cb1ce8e0be9/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f456d6f72792d4d656c6f64792f617765736f6d652d65706964656d69632d6d6f64656c696e672d7061706572733f636f6c6f723d79656c6c6f77)](https://camo.githubusercontent.com/00e909d4bf93b5aae6f032e7225e9654e5a8c0fe446b1a7b7f403cb1ce8e0be9/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f456d6f72792d4d656c6f64792f617765736f6d652d65706964656d69632d6d6f64656c696e672d7061706572733f636f6c6f723d79656c6c6f77)
 
-1:其中目前已知不属于本论文的文件是：subgraph,这个文件只是想看看Graph_4942.pkl的最大连通子图
+馃摙馃摙馃摙 This repository keeps track of the latest papers on epidemic modeling with deep learning methods. We categorize them based on individual tasks.
 
-2:运行randomwalk代码，可以跑出具有 3w 4 w 5w 个节点的三个文件。
+If you want to add new entries, please make PRs with the same format.
 
-3:在文件MHRW.py中，使用了Graph_4942.pkl文件以及feature_all.csv，其中feature_all.csv文件这是一个CSV文件，包含了节点特征数据。该文件用于读取节点特征信息，并将其存储在一个字典中，用于节点特征的计算。运行这个代码会生成新文件node_MHRW_50000.txt。
-这是一个文本文件，用于存储随机游走算法生成的节点序列。每一行包含一个节点标识。这个文件记录了随机游走过程中访问的节点，带有节点特征信息。这是生成的新文件，存储了随机游走的结果。
-因此，这段代码使用了已有的图形数据和节点特征数据，生成了新的文本文件以存储随机游走的结果猜想：）
+You can follow our latest survey to stay updated with the most recent advancements:
 
-4：feature.py文件功能是计算和提取网络图中节点的各种特征，并将这些特征保存到一个CSV文件中，以便后续的数据分析和处理。这些特征包括节点的度、交易金额、邻居数量等，用于分析网络中的节点行为和特性。参考的是GCN那篇论文（但是呢，TTAGN中用的是10个特征，代码中是8个)
+馃敟馃敟馃敟[[A Review of Graph Neural Networks in Epidemic Modeling\]](https://arxiv.org/abs/2403.19852)
 
-5:transaction.py主要功能是从一个已有的图形数据中筛选出特定节点的子图，并提取该子图中的交易数据，然后将这些交易数据保存到一个CSV文件中，以便后续的数据分析和处理。这段代码输入用到了两个文件：Graph_4942.pkl和node_MHRW_40000.txt（这是一个文本文件，包含了随机游走算法生成的节点标识。代码从这个文件中读取节点标识，以便筛选子图。）最后生成了transaction40000_MHRW.csv，包含了从筛选后的子图中提取的交易数据。文件中的列包括起始节点、目标节点、交易金额和时间戳等属性。这个文件保存了子图中的交易数据，可用于后续的数据分析和处理。
+[![img](https://github.com/Emory-Melody/awesome-epidemic-modeling-papers/raw/main/figs/episurvey.png)](https://github.com/Emory-Melody/awesome-epidemic-modeling-papers/blob/main/figs/episurvey.png)
 
-6:跑完features.py文件之后再跑MHRW.py文件。
+If you find this repo helpful, we would appreciate it if you could kindly cite our survey.
 
-7:在sub_analysis.py文件中，这段代码的主要作用是从两个数据文件中提取特定节点的特征信息，然后将这些特征信息保存到一个新的CSV文件中。其中输入是Random walk文件夹下面的node50000.txt文件，输出的文件保存在Random walk文件夹下面，命名为subgraph_50000.csv
+```
+@article{liu2024review,
+  title={A Review of Graph Neural Networks in Epidemic Modeling},
+  author={Zewen Liu, Guancheng Wan, B. Aditya Prakash, Max S. Y. Lau, Wei Jin},
+  journal={arXiv preprint arXiv:2403.19852},
+  year={2024}
+}
+```
 
 
-11.05：随机游走用randomwalk.py文件，不用MHRW.py，其他代码中的输入文件node_MHRW_30000.txt换成node_30000.txt就行了。当时师兄试图修改随机游走方法，所以才用了MHRW文件。
 
-8:先跑的sub_analysis.py生成了subgraph_30000.csv，然后这个subgraph_30000.csv和phish_hack_nodes.txt文件作为输入跑label.py文件，后面会生成label_30000.csv
+## Notes:
 
-9:subgraph.py文件主要是从一个大图中提取其最大弱连通子图，并将该子图保存到subgraph.pkl文件中，不过这个文件功能在TTAGN中没有体现，应该是GCN那篇论文中的步骤。（11.05  14.13）
 
-10：adjacency_matrix.py这个文件中的输入文件还未产生，目前不知道这个代码是否属于TTAGN。
 
-11：dataload.py这个文件是比较靠后运行的文件，这个文件的输入需要很多文件。
+The current version only includes papers related to GNNs and we are working on adding more nonGNN papers.
 
-12：data_process.py文件很重要,输入文件用到了label_30000.csv和transaction30000.csv文件，这个代码首先会从label_30000.csv里面读取节点数据，将节点的标签信息存储为‘node’的列表中，然后从transaction30000.csv文件中获取交易数据，从交易数据中
-提取节点的标签，然后根据节点标签在 node 列表中查找对应的节点索引，并将该索引与交易数据中的其他信息（如时间戳和交易金额）一起写入到名为 transaction30000_1.csv 的新CSV文件中。transaction30000_1.csv会作为dataload.py的输入文件。
+This repo will be consistently updated to keep track of the latest papers related to deep learning in epidemic modeling.
 
-11.6
+## Catalog
 
-13：lstm.py文件会调用layer.py文件，调用时频繁出现错误，改了挺久，后来可以了，运行成功生成了GCN文件用于lgbmc.py文件作为输入。(记录貌似有错误)
-14:exc.py代码用于生成train_mask 和 test_mask，用于将数据集分成训练集和测试集，并更新CSV文件以包含这些信息
+
+
+- awesome-epidemic-modeling-papers
+  - [Notes:](https://github.com/Emory-Melody/awesome-epidemic-modeling-papers?tab=readme-ov-file#notes)
+  - [Catalog](https://github.com/Emory-Melody/awesome-epidemic-modeling-papers?tab=readme-ov-file#catalog)
+  - [Detection](https://github.com/Emory-Melody/awesome-epidemic-modeling-papers?tab=readme-ov-file#detection)
+  - [Surveillance](https://github.com/Emory-Melody/awesome-epidemic-modeling-papers?tab=readme-ov-file#surveillance)
+  - [Projection](https://github.com/Emory-Melody/awesome-epidemic-modeling-papers?tab=readme-ov-file#projection)
+  - [Prediction](https://github.com/Emory-Melody/awesome-epidemic-modeling-papers?tab=readme-ov-file#prediction)
+
+## Detection
+
+
+
+1. [2023] **Inferring Patient Zero on Temporal Networks via Graph Neural Networks** [[paper\]](https://ojs.aaai.org/index.php/AAAI/article/view/26152)
+2. [2021] **Source Detection on Networks Using Spatial Temporal Graph Convolutional Networks** [[paper\]](https://scholarworks.iupui.edu/server/api/core/bitstreams/3d2e45a4-76b6-40ee-a51f-24348db5cdd2/content) [[code\]](https://github.com/anonymous-anuthor/SD-STGCN)
+3. [2020] **Finding Patient Zero: Learning Contagion Source with Graph Neural Networks** [[paper\]](https://arxiv.org/abs/2006.11913)
+
+## Surveillance
+
+
+
+1. [2023] **WDCIP: spatio-temporal AI-driven disease control intelligent platform for combating COVID-19 pandemic** [[paper\]](https://www.tandfonline.com/doi/full/10.1080/10095020.2023.2182236)
+2. [2023] **COVID-19 infection inference with graph neural networks** [[paper\]](https://www.nature.com/articles/s41598-023-38314-3)
+3. [2023] **Detection of Patients at Risk of Enterobacteriaceae Infection Using Graph Neural Networks: a Retrospective Study** [[paper\]](https://www.medrxiv.org/content/10.1101/2023.06.01.23290386v1)
+4. [2023] **Devil in the Landscapes: Inferring Epidemic Exposure Risks from Street View Imagery** [[paper\]](https://dl.acm.org/doi/abs/10.1145/3589132.3625596)
+5. [2023] **Novel Graph Topology Learning for Spatio-Temporal Analysis of COVID-19 Spread** [[paper\]](https://ieeexplore.ieee.org/abstract/document/10106414)
+
+## Projection
+
+
+
+1. [2023] **Contact Tracing and Epidemic Intervention via Deep Reinforcement Learning** [[paper\]](https://dl.acm.org/doi/full/10.1145/3546870)
+2. [2021] **Effective vaccination strategy using graph neural network ansatz** [[paper\]](https://arxiv.org/abs/2111.00920)
+3. [2021] **Controlling Graph Dynamics with Reinforcement Learning and Graph Neural Networks** [[paper\]](https://proceedings.mlr.press/v139/meirom21a.html)
+4. [2020] **Reinforced Epidemic Control: Saving Both Lives and Economy** [[paper\]](https://arxiv.org/abs/2008.01257) [[code\]](https://github.com/anyleopeace/DURLECA)
+
+## Prediction
+
+
+
+1. [2023] **Research on the Forecast of the Spread of COVID-19** [[paper\]](https://dl.acm.org/doi/abs/10.1145/3460238.3460246)
+2. [2023] **RESEAT: Recurrent Self-Attention Network for Multi-Regional Influenza Forecasting** [[paper\]](https://ieeexplore.ieee.org/abstract/document/10050036)
+3. [2023] **A Graph Based Deep Learning Framework for Predicting Spatio-Temporal Vaccine Hesitancy** [[paper\]](https://www.medrxiv.org/content/10.1101/2023.10.24.23297488v1)
+4. [2023] **Epidemiology-Aware Deep Learning for Infectious Disease Dynamics Prediction** [[paper\]](https://dl.acm.org/doi/abs/10.1145/3583780.3615139)
+5. [2023] **MepoGNN: Metapopulation Epidemic Forecasting with Graph Neural Network** [[paper\]](https://2022.ecmlpkdd.org/wp-content/uploads/2022/09/sub_954.pdf)[[code\]](https://github.com/deepkashiwa20/MepoGNN)
+6. [2023] **Metapopulation Graph Neural Networks: Deep Metapopulation Epidemic Modeling with Human Mobility** [[paper\]](https://arxiv.org/abs/2306.14857)
+7. [2023] **Forecasting Infections with Spatio-Temporal Graph Neural Networks: A Case Study of the Dutch SARS-CoV-2 Spread** [[paper\]](https://www.frontiersin.org/articles/10.3389/fphy.2023.1277052/full)
+8. [2023] **MSGNN: Multi-scale Spatio-temporal Graph Neural Network for Epidemic Forecasting** [[paper\]](https://arxiv.org/abs/2308.15840)
+9. [2023] **Dynamic Adaptive Spatio--Temporal Graph Network for COVID-19 Forecasting** [[paper\]](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/cit2.12238)
+10. [2023] **Predicting COVID-19 pandemic by spatio-temporal graph neural networks: A New Zealand's study** [[paper\]](https://arxiv.org/abs/2305.07731) [[code\]](https://github.com/HySonLab/pandemic_tgnn)
+11. [2023] **Graph Neural Network Modeling of Web Search Activity for Real-time Pandemic Forecasting** [[paper\]](https://ieeexplore.ieee.org/abstract/document/10337253)
+12. [2023] **Enhancing Spatial Spread Prediction of Infectious Diseases through Integrating Multi-scale Human Mobility Dynamics** [[paper\]](https://dl.acm.org/doi/abs/10.1145/3589132.3625586)
+13. [2023] **Predicting Influenza with Pandemic-Awareness via Dynamic Virtual Graph Significance Networks** [[paper\]](https://www.sciencedirect.com/science/article/pii/S001048252300272X)
+14. [2023] **DeepDynaForecast: Phylogenetic-informed Graph Deep Learning for Epidemic Transmission Dynamic Prediction** [[paper\]](https://www.biorxiv.org/content/10.1101/2023.07.17.549268v1.abstract) [[code\]](https://github.com/lab-smile/DeepDynaForecast.)
+15. [2023] **Human Mobility Modeling during the COVID-19 Pandemic via Deep Graph Diffusion Infomax** [[paper\]](https://ojs.aaai.org/index.php/AAAI/article/view/26678)
+16. [2022] **EpiGNN: Exploring Spatial Transmission with Graph Neural Network for Regional Epidemic Forecasting** [[paper\]](https://2022.ecmlpkdd.org/wp-content/uploads/2022/09/sub_829.pdf) [[code\]](https://github.com/Xiefeng69/EpiGNN)
+17. [2022] **Self-Attention-Based Deep Learning Network for Regional Influenza Forecasting** [[paper\]](https://ieeexplore.ieee.org/abstract/document/9470981)
+18. [2022] **Estimating the State of Epidemics Spreading with Graph Neural Networks** [[paper\]](https://link.springer.com/article/10.1007/s11071-021-07160-1) [[code\]](http://github.com/DiLauroF/gnninferenceepid)
+19. [2022] **Adaptively Temporal Graph Convolution Model for Epidemic Prediction of Multiple Age Groups** [[paper\]](https://www.sciencedirect.com/science/article/pii/S2667325821001369)
+20. [2022] **CausalGNN: Causal-Based Graph Neural Networks for Spatio-Temporal Epidemic Forecasting** [[paper\]](https://ojs.aaai.org/index.php/AAAI/article/view/21479)
+21. [2022] **Visualization Method for the Spreading Curve of COVID-19 in Universities Using GNN** [[paper\]](https://ieeexplore.ieee.org/abstract/document/9736549)
+22. [2022] **Combining Graph Neural Networks and Spatio-Temporal Disease Models to Improve the Prediction of Weekly COVID-19 Cases in Germany** [[paper\]](https://www.nature.com/articles/s41598-022-07757-5)
+23. [2022] **Hierarchical Spatio-Temporal Graph Neural Networks for Pandemic Forecasting** [[paper\]](https://dl.acm.org/doi/pdf/10.1145/3511808.3557350)
+24. [2021] **HierST: A Unified Hierarchical Spatial-temporal Framework for COVID-19 Trend Forecasting** [[paper\]](https://dl.acm.org/doi/abs/10.1145/3459637.3481927) [[code\]](https://github.com/dolphin-zs/HierST/tree/main)
+25. [2021] **A Human Mobility Data Driven Hybrid GNN+RNN Based Model For Epidemic Prediction** [[paper\]](https://ieeexplore.ieee.org/abstract/document/9671474)
+26. [2021] **Integrating LSTMs and GNNs for COVID-19 Forecasting** [[paper\]](https://arxiv.org/abs/2108.10052) [[code\]](https://github.com/jjgarau/GNND)
+27. [2021] **Prediction of the Effects of Epidemic Spreading with Graph Neural Networks** [[paper\]](https://link.springer.com/chapter/10.1007/978-3-030-65347-7_35) [[code\]](https://github.com/smeznar/Epidemic-spreading-CN2020)
+28. [2021] **Deep learning of contagion dynamics on complex networks** [[paper\]](https://www.nature.com/articles/s41467-021-24732-2) [[code\]](https://github.com/DynamicaLab/code-dynalearn/tree/v1.0) [[data\]](https://github.com/DynamicaLab/data-dynalearn/tree/v1.0)
+29. [2021] **Transfer Graph Neural Networks for Pandemic Forecasting** [[paper\]](https://ojs.aaai.org/index.php/AAAI/article/view/16616) [[code\]](https://github.com/geopanag/pandemic_tgnn)
+30. [2021] **Predicting the Dynamics of the COVID-19 Pandemic in the United States Using Graph Theory-Based Neural Networks** [[paper\]](https://www.mdpi.com/1660-4601/18/7/3834) [[code\]](https://github.com/RezaDavahli/Graph_neural_networks)
+31. [2020] **An Epidemiological Neural Network Exploiting Dynamic Graph Structured Data Applied to the COVID-19 Outbreak** [[paper\]](https://ieeexplore.ieee.org/document/9234698) [[code\]](https://github.com/marcopost-it/epidemiological-gcn)
+32. [2020] **STAN: Spatio-Temporal Attention Network for Pandemic Prediction Using Real-World Evidence** [[paper\]](https://arxiv.org/abs/2008.04215)
+33. [2020] **Examining COVID-19 Forecasting Using Spatio-Temporal Graph Neural Networks** [[paper\]](https://arxiv.org/abs/2007.03113)
+34. [2019] **A Study on Graph-Structured Recurrent Neural Networks and Sparsification with Application to Epidemic Forecasting** [[paper\]](https://arxiv.org/abs/1902.05113)
